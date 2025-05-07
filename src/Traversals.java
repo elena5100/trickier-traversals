@@ -78,8 +78,8 @@ public class Traversals {
    * @return the number of unique values in the tree, or 0 if the tree is null
    */
   public static int countDistinctValues(TreeNode<Integer> node) {
-    return 0;
-  }
+    
+    }
 
   /**
    * Determines whether there is at least one root-to-leaf path in the tree
@@ -90,7 +90,19 @@ public class Traversals {
    * @return true if there exists a strictly increasing root-to-leaf path, false otherwise
    */
   public static boolean hasStrictlyIncreasingPath(TreeNode<Integer> node) {
-    return false;
+    if (node == null) {
+      return false;
+    }
+
+    if (node.left == null && node.right == null) {
+      return true;
+    }
+    else if (node.left.value < node.value && node.right.value < node.value) {
+      return false;
+    }
+    else {
+      return hasStrictlyIncreasingPath(node.left) || hasStrictlyIncreasingPath(node.right);
+    }
   }
 
   // OPTIONAL CHALLENGE
